@@ -1,0 +1,9 @@
+.idea/
+*.properties
+venv4raspi/
+gradle/
+.gradle/
+build/
+out/
+src/main/generated/
+src/test
