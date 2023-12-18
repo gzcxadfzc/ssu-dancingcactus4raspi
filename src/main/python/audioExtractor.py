@@ -1,10 +1,10 @@
 import yt_dlp
 import sys
 
-yt_dlp.postprocessor.FFmpegPostProcessor._ffmpeg_location.set(
-    R'C:/Users/yongs/ffmpeg-2023-11-20-git-e56d91f8a8-full_build/bin')
+#yt_dlp.postprocessor.FFmpegPostProcessor._ffmpeg_location.set(
+#    R'C:/Users/yongs/ffmpeg-2023-11-20-git-e56d91f8a8-full_build/bin')
 EXT = 'wav'
-OUTPUT_DIRECTORY = 'C:/Users/yongs/Desktop/SpringProject/CactusSpeaker4Pi/src/main/resources/musics/'
+OUTPUT_DIRECTORY = '/home/yongsa0221/cactus4raspi/src/main/resources/musics/'
 
 def extract(video_id):
     URLS = [video_id]
@@ -22,5 +22,5 @@ def extract(video_id):
         print(error_code)
 
 url = sys.argv[1]
-# url = '30TkClWvT5k'
+#url = '30TkClWvT5k'
 extract(url)

@@ -16,13 +16,14 @@ public class PythonExecutor {
     @Autowired
     public PythonExecutor(AppConfig appConfig) {
         path = appConfig.getPythonScriptsDirectory();
+	System.out.println(path);
     }
 
     public void exec(String scriptName, String argument) {
         try {
             scriptName = path + scriptName;
             ProcessBuilder processBuilder = new ProcessBuilder("python", scriptName, argument);
-            execProcess(processBuilder);
+	    execProcess(processBuilder);
         } catch (IOException e) {
             e.printStackTrace();
         } catch (InterruptedException e) {
@@ -43,7 +44,8 @@ public class PythonExecutor {
     }
 
     private void execProcess(ProcessBuilder processBuilder) throws IOException, InterruptedException {
-        Process process = processBuilder.start();
+        processBuilder.redirectErrorStream(true);
+	Process process = processBuilder.start();
         BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
         String line;
         Logger logger = Logger.getLogger(PythonExecutor.class.getName());
