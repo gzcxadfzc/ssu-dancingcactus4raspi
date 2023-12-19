@@ -2,6 +2,7 @@ package raspi;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import raspi.utils.gpio.CactusController;
 import raspi.youtube.YoutubeAudio;
 import raspi.youtube.YoutubeAudioSearcher;
 import raspi.utils.YoutubeMusicPlayer;
@@ -10,11 +11,13 @@ import raspi.utils.YoutubeMusicPlayer;
 public class StateMessageHandler {
     private final YoutubeMusicPlayer musicPlayer;
     private final YoutubeAudioSearcher searcher;
+    private final CactusController cactus;
 
     @Autowired
-    public StateMessageHandler(YoutubeMusicPlayer musicPlayer, YoutubeAudioSearcher searcher) {
+    public StateMessageHandler(YoutubeMusicPlayer musicPlayer, YoutubeAudioSearcher searcher, CactusController cactus) {
         this.musicPlayer = musicPlayer;
         this.searcher = searcher;
+        this.cactus = cactus;
     }
 
     public boolean handle(StateMessage stateMessage) {
@@ -25,10 +28,20 @@ public class StateMessageHandler {
             case PLAY -> {
                 YoutubeAudio audio = searcher.getYoutubeAudioFrom(value);
                 musicPlayer.downLoadAndPlay(audio);
+                cactus.dance();
             }
-            case STOP -> musicPlayer.stopMusic();
-            case PAUSE -> musicPlayer.pauseMusic();
-            case RESUME -> musicPlayer.resumeMusic();
+            case STOP -> {
+                musicPlayer.stopMusic();
+                cactus.stop();
+            }
+            case PAUSE -> {
+                musicPlayer.pauseMusic();
+                cactus.stop();
+            }
+            case RESUME -> {
+                musicPlayer.resumeMusic();
+                cactus.dance();
+            }
             case VOLUME -> {
                 if (value.equals("up")) {
                     musicPlayer.volumeUp();
@@ -40,6 +53,8 @@ public class StateMessageHandler {
             }
             case EXIT -> {
                 musicPlayer.stopMusic();
+                cactus.stop();
+                cactus.close();
                 return false;
             }
         }

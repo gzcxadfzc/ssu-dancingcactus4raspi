@@ -1,13 +1,14 @@
-package raspi.utils;
+package raspi.utils.gpio;
 
 import org.springframework.stereotype.Component;
 
 @Component
 public interface CactusController {
 
-    public void dance();
+    void dance();
 
-    public void stop();
+    void stop();
 
-    public void close();
+    void close();
+
 }
