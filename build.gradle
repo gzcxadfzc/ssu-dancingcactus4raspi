@@ -13,7 +13,7 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
     testImplementation 'org.assertj:assertj-core:3.23.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
-
+    implementation 'javax.annotation:javax.annotation-api:1.2'
     implementation 'com.google.api-client:google-api-client:1.32.1'
     implementation 'com.google.apis:google-api-services-youtube:v3-rev20231011-2.0.0'
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.16.0'
