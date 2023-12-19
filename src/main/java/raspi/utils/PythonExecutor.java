@@ -16,7 +16,6 @@ public class PythonExecutor {
     @Autowired
     public PythonExecutor(AppConfig appConfig) {
         path = appConfig.getPythonScriptsDirectory();
-	System.out.println(path);
     }
 
     public void exec(String scriptName, String argument) {
