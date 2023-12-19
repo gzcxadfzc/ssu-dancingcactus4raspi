@@ -1,11 +1,13 @@
-.idea/
+src/main/python/audioExtractor.py
 *.properties
+
+.idea/
+src/main/java/raspi/utils/Dev/
 venv4raspi/
 gradle/
 .gradle/
 build/
 out/
 src/main/generated/
-src/test
-src/main/python/audioExtractor.py
+src/test/
 src/main/resources/musics/
