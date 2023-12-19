@@ -7,3 +7,5 @@ build/
 out/
 src/main/generated/
 src/test
+src/main/python/audioExtractor.py
+src/main/resources/musics/
